@@ -33,7 +33,6 @@ body {
     width: 680px;
     margin: 0 auto;
     background: #ffffff;
-    /* グレー防止 */
 }
 
 /* ===== タイトル ===== */
@@ -42,6 +41,10 @@ body {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 40px;
+    width: 144;
+    height: 44;
+    top: 188px;
+    left: 684px;
 }
 
 /* h2自体に変な余白が出るの防止 */

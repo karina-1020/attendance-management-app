@@ -1,6 +1,7 @@
 body {
     font-family: "Inter", sans-serif;
     background: #ffffff;
+    margin: 0;
 }
 
 /* ===== ヘッダー ===== */
@@ -36,9 +37,19 @@ body {
 /* タイトル */
 .register__title {
     text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 40px;
+    width: 144;
+    height: 44;
+    angle: 0 deg;
+    opacity: 1;
+    top: 161px;
+    left: 684px;
+    font-family: Inter;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 36px;
+    leading-trim: NONE;
+    line-height: 100%;
+    letter-spacing: 0%;
 }
 
 /* ===== フォーム ===== */
