@@ -1,0 +1,115 @@
+body {
+    font-family: "Inter", sans-serif;
+    background: #ffffff;
+}
+
+/* ===== ヘッダー ===== */
+.header {
+    background: #000;
+    height: 80px;
+}
+
+.header__inner {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+}
+
+.header__logo {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.main {
+    padding-top: 60px;
+    background: #ffffff;
+}
+
+/* ===== ログインエリア ===== */
+.login__content {
+    width: 680px;
+    margin: 0 auto;
+    background: #ffffff;
+    /* グレー防止 */
+}
+
+/* ===== タイトル ===== */
+.login__heading {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+/* h2自体に変な余白が出るの防止 */
+.login__heading h2 {
+    margin: 0;
+}
+
+/* ===== フォーム ===== */
+.form {
+    width: 680px;
+}
+
+/* ===== 各入力セット ===== */
+.form__group {
+    margin-bottom: 25px;
+}
+
+/* ===== ラベル ===== */
+.form__group-title {
+    margin-bottom: 8px;
+}
+
+.form__label--item {
+    display: block;
+    font-size: 16px;
+}
+
+/* ===== 入力欄 ===== */
+.form__input--text input {
+    width: 100%;
+    height: 45px;
+    /* register に合わせる */
+    border: 1px solid #000;
+    padding: 0 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* ===== エラー ===== */
+.form__error {
+    color: red;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+/* ===== ログインボタン ===== */
+.form__button {
+    margin-top: 30px;
+}
+
+.form__button-submit {
+    width: 100%;
+    height: 60px;
+    background: #000;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+/* ===== ログインリンク（会員登録） ===== */
+.login__link {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.login__link-register {
+    color: #0073cc;
+    font-size: 20px;
+    text-decoration: none;
+}
