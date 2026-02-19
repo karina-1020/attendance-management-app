@@ -22,12 +22,16 @@
       </a>
     </div>
     <nav class="nav">
-    <a href="#">勤怠</a>
-      <a href="#">勤怠一覧</a>
-      <a href="#">申請</a>
-      <a href="#">ログアウト</a>
-    </nav>
-  </header>
+  <a href="{{ route('attendance.show') }}">勤怠</a>
+  <a href="{{ route('attendance.list') }}">勤怠一覧</a>
+  <a href="#">申請</a>
+
+  <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+    @csrf
+    <button type="submit" class="nav__logout">ログアウト</button>
+  </form>
+ </nav>
+</header>
 
 <main class="main">
  <section class="card">
@@ -42,32 +46,30 @@
 
  {{-- 勤務外 --}}
    @if($status === 'off')
-      <form action="{{ route('attendance.clockIn') }}" method="POST">
-        @csrf
-        <button type="submit" class="btn">出勤</button>
-      </form>
+  <form action="{{ url('/attendance/clock-in') }}" method="POST">
+    @csrf
+    <button type="submit" class="btn">出勤</button>
+  </form>
 
-    {{-- 勤務中 --}}
-    @elseif($status === 'working')
-      <div class="btn-area">
-        <form action="{{ route('attendance.clockOut') }}" method="POST">
-          @csrf
-          <button type="submit" class="btn">退勤</button>
-        </form>
-
-        <form action="{{ route('break.start') }}" method="POST">
-          @csrf
-          <button type="submit" class="btn">休憩入</button>
-        </form>
-      </div>
-
-    {{-- 休憩中 --}}
-    @elseif($status === 'break')
-      <form action="{{ route('break.end') }}" method="POST">
-        @csrf
-        <button type="submit" class="btn">休憩戻</button>
-      </form>
-    @endif
+{{-- 勤務中 --}}
+@elseif($status === 'working')
+  <div class="btn-area">
+    <form action="{{ url('/attendance/clock-out') }}" method="POST">
+      @csrf
+      <button type="submit" class="btn">退勤</button>
+    </form>
+    <form action="{{ url('/break/start') }}" method="POST">
+      @csrf
+      <button type="submit" class="btn">休憩入</button>
+    </form>
+  </div>
+{{-- 休憩中 --}}
+@elseif($status === 'break')
+  <form action="{{ url('/break/end') }}" method="POST">
+    @csrf
+    <button type="submit" class="btn">休憩戻</button>
+  </form>
+@endif
 
     {{-- 退勤後メッセージ --}}
     @if(session('message'))
