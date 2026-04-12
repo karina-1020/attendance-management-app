@@ -1,6 +1,7 @@
 body {
     font-family: "Inter", sans-serif;
     background: #ffffff;
+    margin: 0;
 }
 
 /* ===== ヘッダー ===== */
@@ -25,7 +26,6 @@ body {
 
 .main {
     padding-top: 60px;
-    background: #ffffff;
 }
 
 /* ===== ログインエリア ===== */

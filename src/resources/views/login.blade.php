@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -36,7 +35,8 @@
       </div>
 
       <!-- フォーム -->
-      <form class="form" action="#" method="post">
+      <form class="form" action="{{ route('login') }}" method="post">
+        @csrf
 
         <!-- メールアドレス -->
         <div class="form__group">
@@ -76,6 +76,7 @@
         <div class="form__button">
           <button class="form__button-submit" type="submit">ログインする</button>
         </div>
+        </form>
 
         <!-- リンク -->
         <div class="login__link">

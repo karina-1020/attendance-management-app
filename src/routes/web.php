@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\StampCorrectionRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,5 @@ Route::get('/attendance/list', [AttendanceController::class, 'list'])
 ->name('attendance.list');
 Route::get('/attendance/detail/{id}', [AttendanceController::class, 'detail'])
 ->name('attendance.detail');
-
+Route::get('/stamp_correction_request/list', [StampCorrectionRequestController::class, 'index'])
+->name('stamp_correction_request.list');

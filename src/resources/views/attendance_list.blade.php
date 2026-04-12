@@ -20,13 +20,13 @@
     <nav class="nav">
       <a href="{{ route('attendance.show') }}">勤怠</a>
       <a href="{{ route('attendance.list') }}">勤怠一覧</a>
-      <a href="#">申請</a>
+      <a href="{{ route('stamp_correction_request.list') }}">申請</a>
 
-      <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+       <form method="POST" action="{{ route('logout') }}">
         @csrf
-        <button type="submit" class="nav__logout">ログアウト</button>
-      </form>
-    </nav>
+        <button type="submit" class="nav_logout">ログアウト</button>
+    </form>
+</nav>
   </header>
 
   <main class="main">
@@ -87,8 +87,8 @@
             <tr>
               <td>{{ $day->format('m/d') }}（{{ $week }}）</td>
 
-              <td>{{ $a?->clock_in ?? '' }}</td>
-              <td>{{ $a?->clock_out ?? '' }}</td>
+              <td>{{ $clockIn ? $clockIn->format('H:i') : '' }}</td>
+              <td>{{ $clockOut ? $clockOut->format('H:i') : '' }}</td>
               <td>{{ $breakStr }}</td>
               <td>{{ $workStr }}</td>
 

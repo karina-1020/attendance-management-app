@@ -16,7 +16,7 @@ class AttendanceController extends Controller
 
 public function show()
 {
-    $todayLabel = now()->format('Y年n月j日(D)');
+    $todayLabel = now()->isoFormat('Y年M月D日(ddd)');
     $nowLabel   = now()->format('H:i');
     $userId = Auth::id() ?? 1;
     $today  = Carbon::today()->toDateString();
@@ -25,14 +25,21 @@ public function show()
         ->first();
     // status決定
     $status = 'off';
-    if ($a && $a->clock_in && !$a->clock_out) {
-        $status = ($a->break_start && !$a->break_end) ? 'break' : 'working';
+
+    if ($a && $a->clock_out) {
+    $status = 'done';
+     } elseif ($a && $a->clock_in && !$a->clock_out) {
+    $status = ($a->break_start && !$a->break_end) ? 'break' : 'working';
+    } else {
+    $status = 'off';
     }
+    
     $status_label = match ($status) {
         'off'     => '勤務外',
         'working' => '出勤中',
         'break'   => '休憩中',
-        default   => '勤務外',
+        'done'=>'退勤済',
+        default   => '不明',
     };
     return view('attendance', [
         'status' => $status,
@@ -76,6 +83,7 @@ public function list(Request $request)
         $attendance = Attendance::where('user_id', $userId)
             ->where('id', $id)
             ->firstOrFail();
+        // dd($id);
         return view('attendance_detail', compact('attendance'));
     }
 

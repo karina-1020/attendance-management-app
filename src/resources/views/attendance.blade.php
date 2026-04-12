@@ -1,37 +1,32 @@
-
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>勤怠登録画面一般</title>
+  <title>勤怠画面 - 一般</title>
 
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
-  <link rel="stylesheet" href="{{ asset('css/attendance.css') }}" />
+  <link rel="stylesheet" href="{{ asset('css/attendance_list.css') }}" />
 </head>
 
 <body>
-
-  <!-- ヘッダー -->
+  <!-- ヘッダー（attendance.blade.php と同じでOK） -->
   <header class="header">
     <div class="header__inner">
-      <a class="header__logo" href="/">
-        COACHTECH
-      </a>
+      <a class="header__logo" href="/">COACHTECH</a>
     </div>
-    <nav class="nav">
-  <a href="{{ route('attendance.show') }}">勤怠</a>
-  <a href="{{ route('attendance.list') }}">勤怠一覧</a>
-  <a href="#">申請</a>
 
-  <form action="{{ route('logout') }}" method="POST" style="display:inline;">
-    @csrf
-    <button type="submit" class="nav__logout">ログアウト</button>
-  </form>
- </nav>
-</header>
+    <nav class="nav">
+      <a href="{{ route('attendance.show') }}">勤怠</a>
+      <a href="{{ route('attendance.list') }}">勤怠一覧</a>
+      <a href="{{ route('stamp_correction_request.list') }}">申請</a>
+
+       <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="nav_logout">ログアウト</button>
+    </form>
+</nav>
+  </header>
 
 <main class="main">
  <section class="card">
@@ -63,18 +58,19 @@
       <button type="submit" class="btn">休憩入</button>
     </form>
   </div>
-{{-- 休憩中 --}}
+
+  {{-- 休憩中 --}}
 @elseif($status === 'break')
   <form action="{{ url('/break/end') }}" method="POST">
-    @csrf
-    <button type="submit" class="btn">休憩戻</button>
-  </form>
+  @csrf
+  <button type="submit" class="btn">休憩戻</button>
+</form>
 @endif
 
-    {{-- 退勤後メッセージ --}}
-    @if(session('message'))
-      <p class="message">{{ session('message') }}</p>
-    @endif
+{{-- 退勤後 --}}
+@if($status === 'done')
+  お疲れ様でした。
+@endif
 
-  </section>
+</section>
 </main>
