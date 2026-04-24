@@ -30,6 +30,7 @@ class AttendanceController extends Controller
 
     public function detail($id)
     {
+        $attendance = Attendance::findOrFail($id);
         return view('admin.attendance_detail', compact('id'));
     }
 };

@@ -33,8 +33,8 @@ Route::prefix('admin')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('admin.login.form');
 
     Route::post('/login', [AuthController::class, 'login'])->name('admin.login');
-});
     Route::post('/logout', [AuthController::class, 'logout'])->name('admin.logout');
+});
     Route::prefix('admin')->group(function () {
     Route::get('/attendance/list', [\App\Http\Controllers\Admin\AttendanceController::class, 'index'])->name('admin.attendance.list');
     Route::get('/attendance/{id}', [\App\Http\Controllers\Admin\AttendanceController::class, 'detail']) ->name('admin.attendance.detail');
