@@ -1,5 +1,3 @@
-<?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -18,7 +16,7 @@ public function show()
 {
     $todayLabel = now()->isoFormat('Y年M月D日(ddd)');
     $nowLabel   = now()->format('H:i');
-    $userId = Auth::id() ?? 1;
+    $userId = Auth::id();
     $today  = Carbon::today()->toDateString();
     $a = Attendance::where('user_id', $userId)
         ->where('work_date', $today)
@@ -33,7 +31,7 @@ public function show()
     } else {
     $status = 'off';
     }
-    
+
     $status_label = match ($status) {
         'off'     => '勤務外',
         'working' => '出勤中',
@@ -149,4 +147,8 @@ public function breakEnd(Request $request)
     return redirect()->route('attendance.show');
 }
 
-}
+
+public function __construct()
+    {
+        $this->middleware('auth');
+    }
