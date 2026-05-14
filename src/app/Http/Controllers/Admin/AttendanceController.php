@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -29,8 +30,47 @@ class AttendanceController extends Controller
     }
 
     public function detail($id)
-    {
-        $attendance = Attendance::findOrFail($id);
-        return view('admin.attendance_detail', compact('id'));
+{
+    $attendance = Attendance::findOrFail($id);
+
+    return view('admin.attendance_detail', compact('attendance'));
+}
+
+public function staffList($id, Request $request)
+{
+    $user = User::findOrFail($id);
+
+    $month = $request->query('month');
+
+    $base = $month
+        ? Carbon::createFromFormat('Y-m', $month)->startOfMonth()
+        : Carbon::now()->startOfMonth();
+
+    $start = $base->copy()->startOfMonth();
+    $end   = $base->copy()->endOfMonth();
+
+    $days = [];
+    for ($d = $start->copy(); $d->lte($end); $d->addDay()) {
+        $days[] = $d->copy();
     }
+
+    $attendances = Attendance::where('user_id', $id)
+        ->whereBetween('work_date', [
+            $start->toDateString(),
+            $end->toDateString()
+        ])
+        ->get()
+        ->keyBy(fn ($a) =>
+            Carbon::parse($a->work_date)->toDateString()
+        );
+
+    return view('admin.staff_attendance_list', [
+        'user' => $user,
+        'days' => $days,
+        'attendances' => $attendances,
+        'currentMonth' => $base->format('Y/m'),
+        'prevMonth' => $base->copy()->subMonth()->format('Y-m'),
+        'nextMonth' => $base->copy()->addMonth()->format('Y-m'),
+    ]);
+}
 };

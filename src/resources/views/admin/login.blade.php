@@ -35,7 +35,7 @@
       </div>
 
       <!-- フォーム -->
-      <form class="form" action="{{ route('admin.login') }}" method="post">
+      <form class="form" action="{{ route('login') }}" method="POST">
         @csrf
 
         <!-- メールアドレス -->
