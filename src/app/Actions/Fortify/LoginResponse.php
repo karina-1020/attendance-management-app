@@ -8,7 +8,6 @@ class LoginResponse implements LoginResponseContract
 {
     public function toResponse($request)
     {
-        dd('LoginResponse');
 
         $user = auth()->user();
 

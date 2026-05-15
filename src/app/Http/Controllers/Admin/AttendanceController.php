@@ -19,7 +19,9 @@ class AttendanceController extends Controller
     $prevDate = Carbon::parse($date)->subDay()->toDateString();
     $nextDate = Carbon::parse($date)->addDay()->toDateString();
 
-    $attendances = Attendance::whereDate('work_date', $date)->get();
+    $attendances = Attendance::with('user')
+    ->whereDate('work_date', $date)
+    ->get();
 
     return view('admin.attendance_list', compact(
         'attendances',
@@ -50,6 +52,7 @@ public function staffList($id, Request $request)
     $end   = $base->copy()->endOfMonth();
 
     $days = [];
+
     for ($d = $start->copy(); $d->lte($end); $d->addDay()) {
         $days[] = $d->copy();
     }
@@ -59,12 +62,9 @@ public function staffList($id, Request $request)
             $start->toDateString(),
             $end->toDateString()
         ])
-        ->get()
-        ->keyBy(fn ($a) =>
-            Carbon::parse($a->work_date)->toDateString()
-        );
+        ->get();
 
-    return view('admin.staff_attendance_list', [
+    return view('admin.staff.show', [ 
         'user' => $user,
         'days' => $days,
         'attendances' => $attendances,
@@ -73,4 +73,5 @@ public function staffList($id, Request $request)
         'nextMonth' => $base->copy()->addMonth()->format('Y-m'),
     ]);
 }
+
 };

@@ -27,7 +27,7 @@
       <a href="{{ route('admin.staff.list') }}">スタッフ一覧</a>
       <a href="{{ route('stamp_correction_request.list') }}">申請一覧</a>
 
-       <form method="POST" action="{{ route('admin.logout') }}">
+       <form method="POST" action="{{ route('logout') }}">
         @csrf
         <button type="submit" class="nav_logout">ログアウト</button>
     </form>
@@ -71,7 +71,8 @@
         <tbody>
           @foreach ($attendances as $a)
         <tr>
-        <td>{{ $currentDate }}</td>
+        <!-- <td>{{ $currentDate }}</td> -->
+        <td>{{ $a->user->name }}</td>
         <td>{{ $a->clock_in }}</td>
         <td>{{ $a->clock_out }}</td>
 
