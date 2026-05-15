@@ -45,16 +45,14 @@
       </div>
 
       <tbody>
-    @foreach ($attendances as $a)
+    @foreach ($users as $user)
     <tr>
-        <td>{{ $a->staff->name }}</td>
-        <td>{{ $a->staff->email }}</td>
-        <td>{{ $a->monthly_work }}</td>
-        <td>{{ $a->break_time }}</td>
-        <td>{{ $a->total_time }}</td>
+        <td>{{ $user->name }}</td>
+        <td>{{ $user->email }}</td>
+
 
         <td>
-            <a href="{{ route('admin.attendance.staff.list', $a->staff->id) }}">
+            <a href="{{ route('admin.staff.show', $user->id) }}">
                 詳細
             </a>
         </td>

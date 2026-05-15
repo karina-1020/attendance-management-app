@@ -41,6 +41,33 @@
 
       <!-- タイトル -->
       <div class="admin_attendance_detail__heading">
-        <h2>管理者勤怠一覧詳細画面</h2>
+        <h2>勤怠詳細</h2>
       </div>
 
+    <div class="admin_attendance_detail__content">
+
+  <div class="admin_attendance_detail__heading">
+    <h2>勤怠詳細</h2>
+  </div>
+
+  <p>名前：{{ $attendance->user->name }}</p>
+
+  <p>日付：{{ $attendance->date }}</p>
+
+  <p>出勤：{{ $attendance->clock_in }}</p>
+
+  <p>退勤：{{ $attendance->clock_out }}</p>
+
+  <p>休憩1：{{ $attendance->break_time_1 ?? 'ー' }}</p>
+
+  <p>休憩2：{{ $attendance->break_time_2 ?? 'ー' }}</p>
+
+  <p>備考：{{ $attendance->note ?? 'ー' }}</p>
+
+</div>
+
+<div>
+        <form>
+          <button>修正</button>
+        </form>
+    </div>

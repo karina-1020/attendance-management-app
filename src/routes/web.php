@@ -45,6 +45,8 @@ Route::prefix('admin')
         Route::get('/staff/list',
             [StaffController::class, 'index']
         )->name('admin.staff.list');
+        Route::get('/staff/{id}', [StaffController::class, 'show'])
+        ->name('admin.staff.show');
 
 });
 Route::get('/admin/login', function () {
