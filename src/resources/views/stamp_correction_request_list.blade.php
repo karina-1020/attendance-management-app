@@ -31,3 +31,54 @@
   <main class="main">
     <div class="container">
       <h2 class="page-title">申請一覧</h2>
+
+<main class="main">
+
+    <div class="stamp_request_content">
+
+        <div class="stamp_request_heading">
+            <h2>修正申請一覧</h2>
+        </div>
+
+        <div class="stamp_request_tabs">
+            <a href="/stamp_correction_request/list?status=pending">
+                承認待ち
+            </a>
+
+            <a href="/stamp_correction_request/list?status=approved">
+                承認済み
+            </a>
+        </div>
+
+        <table class="stamp_request_table">
+
+            <thead>
+                <tr>
+                    <th>名前</th>
+                    <th>日付</th>
+                    <th>詳細</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach ($requests as $request)
+
+                <tr>
+                    <td>{{ $request->user->name }}</td>
+                    <td>{{ $request->date }}</td>
+
+                    <td>
+                        <a href="{{ route('stamp_correction_request.detail', $request->id) }}">
+                            詳細
+                        </a>
+                    </td>
+                </tr>
+
+                @endforeach
+            </tbody>
+
+        </table>
+
+    </div>
+
+</main>

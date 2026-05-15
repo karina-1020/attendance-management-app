@@ -37,14 +37,7 @@
 
   <!-- メイン -->
   <main class="main">
-    <div class="admin_attendance_detail__content">
-
-      <!-- タイトル -->
-      <div class="admin_attendance_detail__heading">
-        <h2>勤怠詳細</h2>
-      </div>
-
-    <div class="admin_attendance_detail__content">
+  <div class="admin_attendance_detail__content">
 
   <div class="admin_attendance_detail__heading">
     <h2>勤怠詳細</h2>

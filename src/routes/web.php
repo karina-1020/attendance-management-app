@@ -55,3 +55,6 @@ Route::get('/admin/login', function () {
 Route::get('/admin/attendance/staff/{id}',
     [AdminAttendanceController::class, 'staffList']
 )->name('admin.attendance.staff.list');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/stamp_correction_request/list', [StampCorrectionRequestController::class, 'index']);
+});

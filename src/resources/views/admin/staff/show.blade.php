@@ -33,3 +33,57 @@
 </nav>
   </header>
 
+  <main class="main">
+
+    <div class="staff_attendance_content">
+
+        <div class="staff_attendance_heading">
+            <h2>{{ $staff->name }}さんの勤怠</h2>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>日付</th>
+                    <th>出勤</th>
+                    <th>退勤</th>
+                    <th>休憩</th>
+                    <th>合計</th>
+                    <th>詳細</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach ($staff->attendances as $attendance)
+
+                <tr>
+                    <td>{{ $attendance->work_date }}</td>
+
+                    <td>{{ $attendance->clock_in }}</td>
+
+                    <td>{{ $attendance->clock_out }}</td>
+
+                    <td>
+                        {{ $attendance->break_start }}
+                        〜
+                        {{ $attendance->break_end }}
+                    </td>
+
+                    <td>--</td>
+
+                    <td>
+                        <a href="{{ route('admin.attendance.detail', $attendance->id) }}">
+                            詳細
+                        </a>
+                    </td>
+
+                </tr>
+
+                @endforeach
+            </tbody>
+        </table>
+
+    </div>
+
+</main>
+
