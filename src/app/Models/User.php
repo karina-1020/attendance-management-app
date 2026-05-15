@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Attendance;
+use App\Models\stampCorrectionRequest;
 
 class User extends Authenticatable
 {
@@ -48,4 +49,9 @@ class User extends Authenticatable
     {
     return $this->hasMany(Attendance::class);
     }
+
+    public function stampCorrectionRequests()
+{
+    return $this->hasMany(StampCorrectionRequest::class);
+}
 }

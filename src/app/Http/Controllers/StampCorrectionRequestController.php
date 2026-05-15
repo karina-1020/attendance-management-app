@@ -3,29 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\User;
 
 class StampCorrectionRequestController extends Controller
 {
-//     public function index()
-//     {
-//         return view('stamp_correction_request_list');
-//     }
-// }
-
-public function index(Request $request)
+public function index()
 {
-    $status = $request->query('status', 'pending'); // default 承認待ち
+    if (auth()->user()->role === 'admin') {
 
-    $query = StampCorrectionRequest::query();
+        $requests = StampCorrectionRequest::all();
 
-    if ($status === 'approved') {
-        $query->where('status', 'approved');
+        return view(
+            'admin.stamp_correction_request_list',
+            compact('requests')
+        );
+
     } else {
-        $query->where('status', 'pending');
+
+        $requests = StampCorrectionRequest::where(
+            'user_id',
+            auth()->id()
+        )->get();
+
+        return view(
+            'stamp_correction_request.list',
+            compact('requests')
+        );
     }
-
-    $requests = $query->get();
-
-    return view('stamp_correction_request.list', compact('requests', 'status'));
 }
 };
