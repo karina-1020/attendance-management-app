@@ -8,13 +8,12 @@ class LoginResponse implements LoginResponseContract
 {
     public function toResponse($request)
     {
+    $user = auth()->user();
 
-        $user = auth()->user();
+    if ($user->role === 'admin') {
+        return redirect('/admin/attendance/list');
+    }
 
-        if ($user->role === 'admin') {
-            return redirect('/admin/attendance/list');
-        }
-
-        return redirect('/attendance');
+    return redirect('/attendance');
     }
 }

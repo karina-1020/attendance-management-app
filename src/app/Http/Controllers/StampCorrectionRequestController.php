@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\User;
-use App\Model\StampCorrectionRequeat;
+use App\Models\User;
+use App\Models\StampCorrectionRequest;
 
 class StampCorrectionRequestController extends Controller
 {
@@ -27,7 +27,7 @@ public function index()
         )->get();
 
         return view(
-            'stamp_correction_request.list',
+            'stamp_correction_request_list',
             compact('requests')
         );
     }
